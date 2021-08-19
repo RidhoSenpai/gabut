@@ -1,0 +1,42 @@
+import requests
+from json import loads as load
+
+def main():
+
+	judul = input("Masukkan Judul Anime > ")
+	sps = judul.find(" ")
+	rep = judul.replace(" ", "+")
+	res = requests.get("https://xmadd4.herokuapp.com/api/kuso?q="+rep).text
+	rest = requests.get("https://xmadd4.herokuapp.com/api/kuso?q="+judul).text
+
+	if sps > 0:
+
+		try:
+			print("Info: ",load(res)['info']+"\n")
+			print("Sinopsis: ",load(res)['sinopsis']+"\n")
+			print("Link Download: \n",load(res)['link_dl'])
+
+		except IOError as e:
+			err = "Terjadi kesalahan saat mengambil info!\nError: {}\n".format(e)
+			print(err)
+
+	else:
+
+		try:
+
+			print("Info: ",load(rest)['info']+"\n")
+			print("Sinopsis: ",load(rest)['sinopsis']+"\n")
+			prtint("Link Download: \n",load(rest)['link_dl']+"\n")
+
+		except IOError as err:
+
+			e = "Terjadi kesalahan saat mengambil info!\nError: {}\n".format(err)
+			print(e)
+
+main()
+
+if __name__ == "__main__":
+	
+	while(True):
+		
+		main()

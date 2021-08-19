@@ -1,0 +1,244 @@
+import os
+import sys
+import json
+import pyfiglet
+import random
+import requests
+from time import sleep
+#from termcolor import colored
+from pyfiglet import figlet_format as fig
+from colorama import Fore, Back, Style
+
+m = Fore.RED
+k = Fore.YELLOW
+h = Fore.GREEN
+b = Fore.BLUE
+c = Fore.CYAN
+p = Fore.WHITE
+x = Fore.BLACK
+lk = Fore.LIGHTYELLOW_EX
+mg = Fore.MAGENTA
+lmg = Fore.LIGHTMAGENTA_EX
+bm = Back.RED
+bk = Back.YELLOW
+bh = Back.GREEN
+bb = Back.BLUE
+bc = Back.CYAN
+bp = Back.WHITE
+r = Style.RESET_ALL
+
+def clear():
+	linux = "clear"
+	windows = "cls"
+	os.system([linux,windows][os.name == "nt"])
+clear()
+
+
+def figlet(warna, teks):
+	r = Style.RESET_ALL
+	owh = fig(teks)
+	print(r)
+	print(warna+owh)
+	print(r)
+
+def bner(ga):
+	for btol in ga + '\n':
+		sys.stdout.write(btol)
+		sys.stdout.flush()
+		sleep(random.random() * 0.03)
+
+def banner():
+	risen = fig("RidhoSenpai")
+	print(m+risen)
+	print(r)
+	print(c+"RidhoSenpai ~ // ~")
+	print(r)
+	print("___________________")
+banner()
+
+def mputs():
+	
+	try:
+		
+		ipnya = input(b+"Masukkan IPnya > "+c)
+		
+		cocok = ipnya.find(".")
+		
+		tint = ipnya.replace('.', '')
+		
+		ipf = ipnya.find("figlet ")
+		
+		ipfigs = ipnya.find("Figlet ")
+		
+		figg = ipnya.replace('figlet ', '')
+		
+		voca = ipnya.find("a")
+		voci = ipnya.find("i")
+		vocu = ipnya.find("u")
+		voce = ipnya.find("e")
+		voco = ipnya.find("o")
+		
+		print(r)
+		
+		if ipnya == "exit":
+			
+			exit()
+			
+		elif ipf  == 0 or ipfigs == 0:
+			
+			#bner("Hai Silahkan masukkan text dan warna setelah ini...")
+			#tekss = input("Masukkan teks > ")
+			if voca > 5 or voci > 5 or vocu > 5 or voce > 5 or voco > 5:
+				wd = input("Warna Teks > ")
+				teks = fig(figg)
+				wds = wd.find("s")
+				
+				
+				if wd == "red":
+					
+					print(m+teks+r)
+					
+					
+				elif wd == "yellow":
+					
+					print(k+teks+r)
+					
+					
+				elif wd == "green":
+					
+					print(h+teks+r)
+					
+					
+				elif wd == "blue":
+					
+					print(b+teks+r)
+					
+					
+				elif wd == "white":
+					
+					print(p+teks+r)
+					
+					
+				elif wd == "black":
+					
+					print(x+teks+r)
+					
+					
+				elif wd == "cyan":
+					
+					print(c+teks+r)
+					
+					
+				elif wds > 0:
+					
+					print("Warna {} Tidak ditemukan! ketik 'help' untuk info lebih lanjut.\n".format(wd))
+					
+					
+				else:
+					
+					print(teks)
+					
+				#	print("Warna {} Tidak ditemukan! gunakan help untuk info\n".format(wd))
+					
+				#	sleep(1)
+					
+				#	mputs()
+					
+					
+			else:
+				
+				print("Teksnya mana om?\n")
+				
+				
+		elif ipnya == "help":
+			
+			print("Usage :\n\t<ip>\t\t: Masukkan ip target.\n\t(Range IP)\t: 1.1.1.1 - 225.225.225.225\n\n\tfiglet <teks>\t: Lalu masukkan warna sesuai keinginan\n\tWarna Figlet\t:\n\t\t\t red -- merah\n\t\t\t green -- hijau\n\t\t\t blue -- biru\n\t\t\t yellow -- kuning\n\t\t\t cyan -- hijau laut\n\n\thelp\t: Memunculkan pesan ini.\n\texit\t: Keluar dari tool.\n")
+
+		elif cocok >= 1 and cocok <= 11:
+			
+			if int(tint) > 225225225 or int(tint) < 1111:
+				
+				print("IP tersebut tidak sesuai dengan range ip!\n")
+				
+				sleep(3)
+				
+				
+			else:
+				
+				try:
+					
+					resapi = requests.get("https://api.ipgeolocation.io/ipgeo?apiKey=1f930119b6d949d98a7039dd94407217&ip="+ipnya).text
+					
+					print(c+"Negara : "+b,json.loads(resapi)['country_name'])
+					
+					print(r)
+			
+					print(k+"Kota : "+m,json.loads(resapi)['city'])
+					
+					print(r)
+					
+					print(h+"Kode Pos : "+k,json.loads(resapi)['zipcode'])
+					
+					print(r)
+					
+					print(m+"Mata"+k+" Uang : "+h,json.loads(resapi)['currency']['name'])
+					
+					print(r)
+					
+					print(mg+"\tCode: "+c,json.loads(resapi)['currency']['code'])
+					
+					print(r)
+					
+					print(lk+"\tSymbol: "+lmg,json.loads(resapi)['currency']['symbol'])
+					
+					print(r)
+					
+				except IOError  as goblok:
+				    
+				    owh = "Maaf Terjadi Kesalahan Jaringan!\nError: {}\n".format(goblok)
+				    print(owh)
+				    
+		else:
+			
+			print("Coba ketik help bwang...\n")
+			
+			
+	except KeyboardInterrupt as babi:
+		
+		bau = "\nMaaf ya om ctrl+c ga befungsi :v {}\n".format(babi)
+		
+		bner(bau)
+		
+		mputs()
+		
+		
+	except TypeError as ajg:
+		
+		lu = "Lu itu anjing dan anjing itu harus patuh pada tuannya.\nError: {}\n".format(ajg)
+		
+		print(lu)
+		
+		
+	except NameError as na:
+		
+		si = "Terjadi kesalahan pada: {}\n".format(na)
+		
+		bner(si)
+		
+		mputs()
+		
+		
+	except KeyError as ke:
+		
+		e = "Maaf kami tidak dapat mengambil informasi lain dari ip {}\nError: {}\n".format(ipnya, ke)
+		
+		print(e)
+		
+		
+mputs()
+
+if __name__ == "__main__":
+	
+	while(True):
+		
+		mputs()

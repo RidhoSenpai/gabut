@@ -1,0 +1,68 @@
+from time import sleep
+from os import system, name
+from pywget import wget as get
+from colorama import Fore, Back, Style
+from pyfiglet import figlet_format as figlet
+
+dir = "/storage/emulated/0/"
+
+def clear():
+	limux = "clear"
+	wimdos = "cls"
+	system([limux,wimdos][name == "nt"])
+clear()
+
+def banner():
+	logo = figlet("Quotes Sad")
+	print(logo)
+banner()
+
+def core():
+	try:
+		qu = input("Masukkan Kata > ")
+		ot = input("Masukkan WM > ")
+		quo = qu.replace(" ", "+")
+		tes = ot.replace(" ", "+")
+		cr = qu.find(' ')
+		cri = ot.find(' ')
+		
+		try:
+			
+			if cr > 0 and cri > 0:
+				link = "https://rahmansenpai.my.id/api/quotes-sad?kata={}&watermark={}".format(quo,tes)
+				print("\n")
+				get.download(link, "/storage/emulated/0/quotes-sad.png")
+				sleep(1)
+				print("\nGambar sudah di simpan!\nLocation: {}\n".format(dir))
+			
+			elif cri > 0:
+				lin = "https://rahmansenpai.my.id/api/quotes-sad?kata={}&watermark={}".format(qu,tes)
+				get.download(lin, "/storage/emulated/0/quotes-sad.png")
+				sleep(1)
+				print("\nGambar sudah di simpan!\nLocation: {}\n".format(dir))
+			
+			elif cr > 0:
+				lik = "https://rahmansenpai.my.id/api/quotes-sad?kata={}&watermark={}".format(quo,ot)
+				get.download(lik, "/storage/emulated/0/quotes-sad.png")
+				sleep(1)
+				print("\nGambar sudah di simpan!\nLocation: {}\n".format(dir))
+			
+			else:
+				lnk = "https://rahmansenpai.my.id/api/quotes-sad?kata={}&watermark={}".format(qu,ot)
+				get.download(lnk, "/storage/emulated/0/quotes-sad.png")
+				sleep(1)
+				print("\nGambar sudah di simpan!\nLocation: {}\n".format(dir))
+		
+		except IOError as pedo:
+			filia = "Terjadi kesalahan nih om\nError: {}\n".format(pedo)
+			print(filia)
+			
+			
+	except IOError as p:
+		print("Terjadi kesalahan saat mengambil Quotes\nError: {}\n".format(p))
+
+core()
+
+if __name__ == "__main__":
+	while(True):
+		core()

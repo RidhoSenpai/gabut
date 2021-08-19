@@ -1,0 +1,85 @@
+import os
+import sys
+import json
+import base64
+import requests
+from io import BytesIO
+from PIL import Image
+from time import sleep
+from random import random
+#from termcolor import colored
+from colorama import Fore, Back, Style
+from pyfiglet import figlet_format as figlet
+
+m = Fore.RED
+k = Fore.YELLOW
+h = Fore.GREEN
+b = Fore.BLUE
+c = Fore.CYAN
+p = Fore.WHITE
+x = Fore.BLACK
+bm = Back.RED
+bk = Back.YELLOW
+bh = Back.GREEN
+bb = Back.BLUE
+bc = Back.CYAN
+bp = Back.WHITE
+r = Style.RESET_ALL
+
+def clear():
+	linux = "clear"
+	windows = "cls"
+	os.system([linux,windows][os.name == "nt"])
+clear()
+
+def logo():
+	print(r)
+	log = figlet("Nulis di Kertas V2.0")
+	print(r+bh+p+log+r)
+	print(r)
+logo()
+'''
+def dir():
+	android = "/storage/emulated/0/"
+	linux = "/user/bin/"
+	windows = "%USERPROFILE%\\Documents\\"
+	oi = os.system([android,linux,windows][os.name == "nt"])
+	print(oi)
+'''
+def nulis():
+	try:
+		tulis = input(r+m+"Masukkan Text > "+k)
+		10baris = tulis[10]
+		try:
+			if tulis == "help":
+				print("Usage:\n\t\tDefault --- Masukkan Teks yg anda inginkan\n\t\tHelp:\tMemunculkan pesan ini!\n")
+			else:
+				print(r)
+				sleep(0.1)
+				res = requests.get("https://xmadd4.herokuapp.com/nulis?text="+tulis).text
+				masuk = json.loads(res)['result']
+				print("Tunggu Sebentar...")
+				sleep(1)
+				meh = masuk.replace("data:image/jpeg;base64,", '')
+				ft = Image.open(BytesIO(base64.b64decode(meh)))
+				ft.save(10baris+'.jpeg', "JPEG")
+				sleep(1)
+				print("Sudah Siap Tulisan anda sudah di simpan!")
+				sleep(1)
+				print("Saved!\nLocation:\t/storage/emulated/0/{}.jpeg\n".format(10baris))
+		except:
+			sleep(2)
+			pass
+			nulis()
+
+	except IOError as e:
+		err = "Terjadi Kesalahan pada: {}".format(e)
+		print(err)
+		
+nulis()
+
+if __name__ == "__main__":
+
+	while(True):
+
+		nulis()

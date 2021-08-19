@@ -1,0 +1,117 @@
+import base64
+from PIL import Image
+from io import BytesIO as bio
+from time import sleep
+from colorama import Back, Fore, Style
+from pyfiglet import figlet_format as figlet
+
+m = Fore.RED
+lm = Fore.LIGHTRED_EX
+k = Fore.YELLOW
+h = Fore.GREEN
+lh = Fore.LIGHTGREEN_EX
+b = Fore.BLUE
+lb = Fore.LIGHTBLUE_EX
+lu = Fore.LIGHTMAGENTA_EX
+c = Fore.CYAN
+p = Fore.WHITE
+lp = Fore.LIGHTWHITE_EX
+x = Fore.BLACK
+bm = Back.RED
+lbm = Back.LIGHTRED_EX
+bk = Back.YELLOW
+bh = Back.GREEN
+bb = Back.BLUE
+blu = Back.LIGHTMAGENTA_EX
+bc = Back.CYAN
+bp = Back.WHITE
+lbp = Back.LIGHTWHITE_EX
+r = Style.RESET_ALL
+
+
+def logo():
+	lo = figlet("Decoder")
+	go = figlet("Base64")
+	print(h+lo+lh+go+r)
+logo()
+
+def dec_():
+	
+	try:
+		ins = input("Masukkan nama File > ")
+		#ex = input("Masukkan insensi File > ")
+		sleep(1)
+		inp = open(ins, "rb").read()
+		a = ins.find("docx")
+		b = ins.find("txt")
+		#c = ins.find("enc")
+		d = ins.find("jpg")
+		e = ins.find("jpeg")
+		f = ins.find("png")
+		g = ins.find("bmp")
+		try:
+			if a > 0:
+				inrpc = inp.replace("'", "")
+				base64.b64decode(inp)
+				print("Selesai...")
+				sleep(2)
+			elif b > 0:
+				tst = "{}".format(inp)
+				#pe = tst.replace('b','')
+				#pek = tst.replace("'",'')
+				dec = base64.b64decode(tst)
+				ktl = "{}".format(dec)
+				me = ktl.replace('b','')
+				mek = me.replace("'",'')
+				open("decoded.txt", "w").write(mek)
+				print("selesai")
+			#elif c == 0:
+			#	base64.b64decode(inp)
+			#	print("Selesai")
+			elif d > 0:
+					dec = base64.b64decode(inp)
+					im = Image.open(dec)
+					sleep(1.5)
+					im.save('image1.jpg', "JPEG")
+					print("Selesai\n")
+			elif e > 0:
+					tost = base64.b64decode(inp)
+					fu = tost.replace('b', '')
+					ck = fu.replace("'", '')
+					ft = Image.open(bio(base64.b64decode(inp)))
+					sleep(1.5)
+					ft.save('decoded-image.jpeg', "JPEG")
+					print("Selesai\n")
+			elif f > 0:
+				ganbaru = open(ins, "rb")
+				gb = Image.open(BytesIO(base64.b64decode(ganbaru)))
+				gb.save('image1.png', "PNG")
+			elif g > 0:
+				sc = Image.open(BytesIO(base64.b64decode(inp)))
+				sc.save('image1.bmp', "BMP")
+				sleep(1.5)
+		except FileExistsError as file:
+			#open("decoded1.txt", "wb").write(dec)
+			print("file exists")
+
+		except IOError as mtc:
+			print("Mohon Maaf terjadi kesalahan saat decode file\nError: {}\n".format(mtc))
+	except NameError as err:
+		e = "Terjadi Kesalahan\nError: {}\n".format(err)
+		print(e)
+	except FileNotFoundError as e:
+		err = "File Tidak ditemukan!\nError: {}\n".format(e)
+		print(err)
+		
+	if __name__ == "__main__":
+		
+		while(True):
+			
+			dec_()
+dec_()
+
+if __name__ == "__main__":
+	
+	while(True):
+		
+		dec_()

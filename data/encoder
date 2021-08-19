@@ -1,0 +1,119 @@
+import base64
+from PIL import Image
+from time import sleep
+from io import BytesIO as bio
+from os import system as shell
+from colorama import Back, Fore, Style
+from pyfiglet import figlet_format as figlet
+
+m = Fore.RED
+lm = Fore.LIGHTRED_EX
+k = Fore.YELLOW
+h = Fore.GREEN
+lh = Fore.LIGHTGREEN_EX
+b = Fore.BLUE
+lb = Fore.LIGHTBLUE_EX
+lu = Fore.LIGHTMAGENTA_EX
+c = Fore.CYAN
+p = Fore.WHITE
+lp = Fore.LIGHTWHITE_EX
+x = Fore.BLACK
+bm = Back.RED
+lbm = Back.LIGHTRED_EX
+bk = Back.YELLOW
+bh = Back.GREEN
+bb = Back.BLUE
+blu = Back.LIGHTMAGENTA_EX
+bc = Back.CYAN
+bp = Back.WHITE
+lbp = Back.LIGHTWHITE_EX
+r = Style.RESET_ALL
+
+def logo():
+	lo = figlet("Encoder")
+	go = figlet("Base64")
+	#go = """                                                                                                                                                                                      
+#    _/_/_/_/                                                  _/                                            _/_/_/                                                _/_/_/     _/  _/   
+#   _/             _/_/_/        _/_/_/       _/_/        _/_/_/        _/_/       _/  _/_/                 _/    _/       _/_/_/        _/_/_/       _/_/      _/           _/  _/    
+#  _/_/_/         _/    _/    _/           _/    _/    _/    _/      _/_/_/_/     _/_/                     _/_/_/       _/    _/      _/_/         _/_/_/_/    _/_/_/       _/_/_/_/   
+# _/             _/    _/    _/           _/    _/    _/    _/      _/           _/                       _/    _/     _/    _/          _/_/     _/          _/    _/         _/      
+#_/_/_/_/       _/    _/      _/_/_/       _/_/        _/_/_/        _/_/_/     _/                       _/_/_/         _/_/_/      _/_/_/         _/_/_/      _/_/           _/       
+                                                                                                                                                                                      
+                                                                                                                                                                                      
+#"""
+	print(h+lo+lh+go+r)
+logo()
+def core():
+	try:
+		ins = input(lb+"Masukkan Nama File Input > "+r)
+		a = ins.find("docx")
+		b = ins.find("txt")
+#		c = ins.find(".nomedia")
+		d = ins.find("jpg")
+		e = ins.find("jpeg")
+		f = ins.find("png")
+		g = ins.find("bmp")
+		cd = ins.find("cd")
+		ls = ins.find("ls")
+		#PR
+		#hehe = "{}".format(ins)
+		#hehehe = ins.replace(hehe, )
+		try:
+			if b > 0:
+				inpe = open(ins, "rb").read()
+				encodec = base64.b64encode(inpe)
+				tb = "{}".format(encodec)
+				pa = tb.replace('b','')
+				ler = pa.replace("'",'')
+				enc = open("encoded.txt", "w").write(ler)
+				sleep(2)
+				print("Selesai")
+			#elif c == 0:
+			#	base64.b64encode(inp)
+			#	print("Selesai")
+			elif d > 0:
+				ingput = open(ins, "rb").read()
+				encory = base64.b64encode(ingput)
+				sleep(1.5)
+				tostr = "{}".format(encory)
+				stri = tost.replace('b','')
+				ngs = str.replace("'",'')
+				encryp = open("encoded-image1.jpg")
+				sleep(2)
+				print("Selesai\n")
+			elif e > 0:
+				inp = open(ins, "rb").read()
+				encor = base64.b64encode(inp)
+			#	toen = base64.b64encode(inp)
+				tostri = "{}".format(encor)
+			#	ope = Image.open(ing)
+				encry = open("encoded-image1.jpeg", "w").write(tostri)
+			#	ope.save('encoded-image.jpeg', "JPEG")
+				sleep(2)
+				print("Selesai\n")
+			#elif cd == 0:
+			#	chdir = "{}".format(ins)
+			#	shell(chdir)
+			elif ls == 0:
+				shell(ins)
+			else:
+				print("Maaf tidak dapat encoding file {}".format(ins))
+		except IOError as bo:
+			print("Mohon Maaf terjadi kesalahan saat encoding file\nError: {}\n".format(bo))
+	except NameError as err:
+		#print("Gagal!\n")
+		e = "Terjadi Kesalahan\nError: {}\n".format(err)
+		print(e)
+#	except ValueError as e:
+#		err = "File Tidak ditemukan!\nError: {}\n".format(e)
+#		print(err)
+	except FileNotFoundError as fnfe:
+		print("File tidak ditemukan!\nError: {}\n".format(fnfe))
+	
+	if __name__ == "__main__":
+		
+		while(True):
+			
+			core()
+
+core()

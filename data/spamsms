@@ -1,0 +1,36 @@
+import os
+import json
+import requests
+from pyfiglet import figlet_format as figlet
+
+def logo():
+	
+	lo = figlet("Spam SMS")
+	print(lo)
+	
+logo()
+
+def core():
+	try:
+		
+		no = input("Masukkan Nomor > ")
+		jum = input("Masukkan Jumlah > ")
+		res = requests.get("https://xmadd4.herokuapp.com/api/spamsms?no="+no+"&jum="+jum).text
+		if json.loads(res)['status'] == "false":
+			print("Masukkan Parameter Nomor!\n")
+		elif json.loads(res)['status'] == "false":
+			print("Masukkan Parameter Jumlah!\n")
+		else:
+			print("Done ya bwang tunggu aja :v\n")
+
+	except IOError as F:
+		e = "Terjadi kesalahan!\Error: {}\n".format(F)
+		print(e)
+		
+core()
+
+if __name__ == "__main__":
+	
+	while(True):
+		
+		core()
