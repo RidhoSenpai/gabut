@@ -1,0 +1,8 @@
+pyjson
+pyfiglet
+colorama
+requests
+pywget
+PIL
+io
+pybase64
