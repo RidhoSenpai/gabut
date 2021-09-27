@@ -1,0 +1,103 @@
+import os
+import sys
+from time import sleep
+from random import random as ran
+from colorama import Back, Fore, Style
+from pyfiglet import figlet_format as figlet
+
+lh = Fore.LIGHTGREEN_EX
+r = Style.RESET_ALL
+
+def logo():
+	ban = figlet("HTML Creator V1.0")
+	print(lh+ban+r)
+logo()
+
+def ngetik(type):
+	for tik in lh + type + r + "\n\n":
+		sys.stdout.write(tik)
+		sys.stdout.flush()
+		sleep(ran() * 0.05)
+ 
+def html():
+	title = input("Masukkan Title > ")
+	nick = input("Masukkan Nick Anda > ")
+	bgr = input("(Optional) Masukkan URL gambar [Background] > ")
+	k1 = input("Masukkan Pesan untuk web > ")
+	k2 = input("Masukkan Nama Team > ")
+	k3 = input("Masukkan Member Team > ")
+	tnks = input("Thanks To > ")
+	#print("Ketik 'bgcolor' untuk melihat warna yg tersedia\n")
+	'''wbg = input("Masukkan Warna Background > ")
+	warna = "{}".format(wbg)
+	if wbg == "bgcolor":
+		print(f""1. Red
+2. Green
+3. Blue
+4. Yellow
+5. Cyan
+Dst.
+"")'''
+	print("\nUrl: Opsional\n\tBoleh di skip.\nContoh: https://ridhosenpai.xyz/image/gambar1.jpg")
+	urlgb = input("Url Logo/Gambar > ")
+	urlico = input("Url Icon > ")
+	urlau = input("Url Audio > ")
+	#print("Ketik 'fonts' untuk melihat font yg tersedia\n")
+	alert = input("Masukkan Pesan Alert > ")
+	'''
+	if fonts == "fonts":
+		print(f""Font yg tersedia:
+
+1. Calibri\t\t\t11. Comic Sans MS
+2. CourierNew\t\t\t12. Verdana
+3. Times News Roman\t\t13. Lucida Console
+4. Impact
+5. Time
+6. Arial
+7. Helvetica
+8. serif
+9. sans-serif
+10. Tahoma
+"")
+	
+	elif fonts == "Calibri" or fonts == "calibri":
+		calib = "{}".format(fonts)
+		
+	elif fonts == "Courier New" or fonts == "courier new":
+		kurir = "{}".format(fonts)
+		
+	elif fonts == "Time News Roman" or fonts == "time news roman":
+		tnsr = "".format(fonts)
+	
+	elif fonts == "{}".format(fonts):
+		ngetik("Font {} tidak ditemukan silahkan ketik fonts untuk melihat semua font yg tersedia\n".format(fonts))'''
+		
+	titlenick = '<html><head><title>{}</title><meta name="description" content="HACKED BY {}">'.format(title, nick)
+	icolert = '<link rel="icon" href="{}"><script type="text/javascript">alert("{}");</script></head>'.format(urlico, alert)
+	scripts = '<script src="https://cdn.rawgit.com/bungfrangki/efeksalju/2a7805c7/efek-salju.js" type="text/javascript"></script>'
+	#lglg = '<style type="text/css">body \{url-background:url(\'{}\');\}'.format(bgr)
+	gbrk1 = '<body background="{}" bgcolor="black"><center><h1>Hacked By {}</h1><br /><img src="{}" height="400" widht="400" title="Logo"><br><div class="font1">   {}   </div>'.format(bgr, nick, urlgb, k1)
+	k2k3 = '<br><br><div class="font2">   [	{}	]   </div><br><br> <div class="font3"><marquee align="center" scrollamount="10" width="40%">{}</div><div class="font2">{}</div></marquee>'.format(k2, k3,tnks)
+	audx = '<br><br><button><audio src="{}" controls="autoplays"></audio></button><br><br><br></center></body></html>'.format(urlau)
+		
+	buat = open(nick+".html", "w")
+	buat.write(titlenick)
+	buat.close()
+	hasil = open(nick+".html", "a")
+	hasil.write(icolert)
+	hasil.write(scripts)
+	#hasil.write(lglg)
+	hasil.write(gbrk1)
+	hasil.write(k2k3)
+	hasil.write(audx)
+	sleep(2)
+	print("\nSelesai...\nFile sudah dibuat sesuai nick anda!\n\n")
+	logo()
+	
+html()
+
+if __name__ == "__main__":
+	
+	while(True):
+	
+		html()
