@@ -1,34 +1,9 @@
 import os
 from time import sleep
-import json
 import sys
 import random
-from os import system
-from colorama import Back, Fore, Style
-from  pyfiglet import figlet_format as fig
-
-m = Fore.RED
-lm = Fore.LIGHTRED_EX
-k = Fore.YELLOW
-h = Fore.GREEN
-lh = Fore.LIGHTGREEN_EX
-b = Fore.BLUE
-lb = Fore.LIGHTBLUE_EX
-lu = Fore.LIGHTMAGENTA_EX
-c = Fore.CYAN
-p = Fore.WHITE
-lp = Fore.LIGHTWHITE_EX
-x = Fore.BLACK
-bm = Back.RED
-lbm = Back.LIGHTRED_EX
-bk = Back.YELLOW
-bh = Back.GREEN
-bb = Back.BLUE
-blu = Back.LIGHTMAGENTA_EX
-bc = Back.CYAN
-bp = Back.WHITE
-lbp = Back.LIGHTWHITE_EX
-r = Style.RESET_ALL
+from ridef import *
+from ridef import logo, exe
 
 def hapus():
 	linux = "clear"
@@ -46,12 +21,6 @@ def oss(cmd):
 #	linus = "ls"
 #	windos = "dir"
 #	os.system([linus,windos][os.name == "nt"])
-
-def pyth(file):
-	linux = "python3"
-	windows = "py"
-	py = " {}".format(file)
-	os.system([linux+py,windows+py][os.name == "nt"])
 	
 #Awoakwokawok
 #def shel(file):
@@ -83,13 +52,15 @@ def reg():
 			hapus()
 			sleep(1)
 			print("Registrasi selesai silahkan login...")
-			sleep(random.random() * 2.5)
+			sleep(random.random() * 3.5)
 			pyth("risen.py")
-		elif frml == 0:
+		elif frml < 1:
 			print("Email tidak valid!\nMohon masukkam E-mail yg valid!\nError: Couldn't find Character before '@'\nSilahkan isi bidang email dengan Benar!!!\n")
+			sleep(3.5)
+			reg()
 		else:
 			print("Email tidak valid!\nMohon masukkan E-mail yg valid!\nError: Character doesn't exists\nSilahkan gunakan '@' untuk mengisi bidang Email!\n")
-			sleep(3)
+			sleep(3.5)
 			reg()
 	except IOError as err:
 		e = "Error: {}\n".format(err)
@@ -98,7 +69,8 @@ def reg():
 		reg()
 
 def main_logo():
-	print(m+fig("[#] Login [#]")+r)
+	#print(m+fig("[#] Login [#]")+r)
+	logo(m, "[#] Login [#]", r)
 
 def login():
 	hapus()
@@ -174,13 +146,13 @@ def login():
 			sleep(1)
 
 risensama = os.getlogin()
-if risensama == "u0_a116" or risensama == "RidhoSenpai":
+if risensama == "u0_a201" or risensama == "RidhoSenpai":
 	hapus()
 	print(lbp+x+"Youkoso Ridho-sama! Saya menanti kedatangan anda...\n"+r)
 	sleep(2)
 else:
 	print("Maaf sepertinya anda bukan orang yang saya cari, jadi mohon untuk login terlebih dahulu...")
-	sleep(3)
+	sleep(1)
 	login()
 
 def profiles():
@@ -242,10 +214,14 @@ def profiles():
 def deface():
 	webdav = fig("WebDav")
 	print(p+bm+webdav+r)
-	print("\nContoh: www.google.com\n\tridhosenpai.xyz\n")
+	print("\nContoh: www.google.com\n\tridhosenpai.my.id\n")
 	web = input("Website > ")
-	print("\nContoh:\n\tAndroid:\t/storage/emulated/0/index.html\n\tWindows:\tD:\\Data\\sc\\index.html\n\nNote:\tNama Script Harus index.html\n")
-	path = input("Insert Script > ")
+	print("""
+Contoh:
+		Windows: D:\\Data\sc\index.html
+		untuk android lokasinya ada di /storage/emulated/0/ tinggal masukin nama sc doang
+	Note: Nama Script Harus index.html""")
+	nama = input("Insert Script > ")
 	
 	try:
 		
@@ -256,7 +232,8 @@ def deface():
 			exit()
 			
 		else:
-			os.system("curl -T "+path, web)
+			#pycurl
+			wdv(nama, web)
 			print("Masih belum selesai nih PR :v")
 			sleep(3)
 			deface()
@@ -301,7 +278,7 @@ def figlets(warna,teks):
 def exece():
 	
 	try:
-		i = input(m+"[×]~Execute~> "+r)
+		i = input(m+"$i "+r)
 		py = i.find('python')
 		sh = i.find('sh')
 		bash = i.find('bash')
@@ -351,6 +328,7 @@ def sub_menu():
 	exece()
 
 def logom():
+	cpc = os.cpu_count()	
 	logonya = fig("      	Ridho        ")
 	print(r)
 	logonya1 = fig("      	Senpai   ")
@@ -359,10 +337,14 @@ def logom():
 	print(r)
 	print(r+lp+lbm+logonya+r+lm+lbp+logonya1+r+r+r)
 	print("\nAuthor: RidhoSenpai\nGitHub:"+lh+" https://github.com/RidhoSenpai"+r)
-	print(lb+"CPU Used:"+r, os.cpu_count(),"\nTotal Tool: 15\n")
-	#print(h+"[+]-----------------------------------[+]"+r)
-	#print(r+"\n")
-	print(m+"[+]---------------"+r+k+"MENU"+r+m+"----------------[+]"+r)
+	if cpc > 3:
+		print(lb+"Core Used"+r+":"+lm, cpc,r+"\nTotal Tool: 17\n{}\n".format("Bagi hp kentang cpu used 4 udah masuk mode ngebut om :v"))
+	elif cpc >= 2:
+		print(lb+"Core Used"+r+":"+h, cpc,r+"\nTotal Tool: 17\n")
+	elif cpc == 1:
+		print(lb+"Core Used"+r+":"+lm, cpc,r+"\nHP anda sedang dalam kondisi Prima!\n\nTotal Tool: 17\n")
+
+	print(m+"[{}+{}]---------------".format(k,m)+r+k+"MENU"+r+m+"----------------[{}+{}]".format(k,m)+r)
 	print(r)
 	print("[1]~ Profile")
 	print("[2]~ Register")
@@ -375,12 +357,14 @@ def logom():
 	print("[9]~ Encoder File & Gambar (base64)")
 	print("[10]~ Decoder File & Gambar (base64)")
 	print("[11]~ Quotes-sad [new]")
-	print("[12]~ Script Deface Creator [new]")
+	print("[12]~ Script Deface Creator")
 	print("[13]~ Spam SMS")
 	print("[14]~ Hater Alpin (Khusus Hater alpin)")
 	print("[15]~ WinRate Kalkulator")
+	print("[16]~ WebDav (Only PC and Termux)")
+	print("[17]~ Penghitung Togel SGP & HK 2D Jitu!")
 	print(r)
-	print(k+"[+]------------------"+m+"-----------------[+]"+r)
+	print(k+"[{}+{}]------------------".format(m,k)+m+"-----------------[{}+{}]".format(k, m)+r)
 	print("\n")
 logom()
 def logo_menu():
@@ -413,15 +397,20 @@ def logo_menu():
 			
 		elif mas == 5:
 			print("Sabar ya mas... :v\n")
-			sleep(2)
-			clear()
+			sleep(1)
+			hapus()
 			pyth("data/ip")
 			
 		elif mas == 6:
 			deface()
 			
-		elif mas > 15:
-			primitif = "Hah? sejak kapan tool ku jadi banyak gini :v\n\tTotal Tools \t:\t15\n\tChoosed\t\t:\t{}\n".format(mas)
+		elif mas > 17:
+			primitif = '''
+	Hah? sejak kapan tool ku jadi banyak gini :v
+
+Total Tool:\t17
+Choosed   :\t{}\n
+'''.format(mas)
 			print(p+primitif+r)
 		
 		elif mas == 7:
@@ -451,19 +440,25 @@ def logo_menu():
 		elif mas == 15:
 			pyth("data/wrcalc")
 			
+		elif mas == 16:
+			pyth("data/webdav")
+			
+		elif mas == 17:
+			pyth("data/mahal.py")
+			
 		else:
 			print("\n")
 			print(bm+x+"Plihan tidak tersedia!"+r)
 			sleep(2)
 				
 	except ValueError as err:
-		e = "\nUsage:\n\t1\t---\tSee Profile\n\t2\t---\tRegistration\n\t3\t---\tExit from this tool\n\t4\t---\tBash Menu\n\t5\t---\tIP Geolocation\n\t6\t---\tDeface Method WebDav\n\t7\t---\tNulis di Kertas V.1.0.0(Beta)\n\t8\t---\tRemote Bot Telegram\n"
+		e = "\nUsage:\n\t1\t---\tSee Profile\n\t2\t---\tRegistration\n\t3\t---\tExit from this tool\n\t4\t---\tBash Menu\n\t5\t---\tIP Geolocation\n\t6\t---\tDeface Method WebDav\n\t7\t---\tNulis di Kertas V1.0(Beta)\n\t8\t---\tRemote Bot Telegram\n"
 		print(e)
 			
 logo_menu()
 
 if __name__ == "__main__":
-	
+	 
 	while(True):
 		
 		logo_menu()
