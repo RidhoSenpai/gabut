@@ -12,8 +12,49 @@ from os import system as sis
 from threading import Thread
 from random import random as acak
 from colorama import Fore, Back, Style
-from pyfiglet import figlet_format as figlet
+from pyfiglet import figlet_format as fig
 
+#Check Modules & AUTO INSTALL
+co = "colorama"
+thr = "threading"
+pyf = "pyfiglet"
+jso = "json"
+	
+def ain(pkg):
+	subprocess.check_call([sys.executable, "-m", "pip", "install", pkg])
+
+if __name__ == "__main__":
+	try:
+		import colorama
+	except ImportError:
+		print(f"Sepertinya module {co} belum terinstall/n{ImportError}")
+		print("menginstall...")
+		sleep(1)
+		ain(co)
+	try:
+		import threading
+	except ImportError:
+		print(f"Sepertinya module {thr} belum di install.../n{ImportError}")
+		print("menginstall...")
+		sleep(1)
+		ain(thr)
+	try:
+		import pyfiglet
+	except ImportError:
+		print(f"Sepertinya module {pyf} belum di install.../n{ImportError}")
+		print("menginstall...")
+		sleep(1)
+		ain(pyf)
+	try:
+		import json
+	except ImportError:
+		print(f"Sepertinya module {jso} belum di install.../n{ImportError}")
+		print("menginstall...")
+		sleep(1)
+		ain(jso)
+	finally:
+		print("Semua module telah di install selamat menikmati :)")
+		
 
 #warna Foreground
 m = Fore.RED
@@ -24,6 +65,8 @@ h = Fore.GREEN
 lh = Fore.LIGHTGREEN_EX
 b = Fore.BLUE
 lb = Fore.LIGHTBLUE_EX
+c = Fore.CYAN
+cb = Fore.LIGHTCYAN_EX
 u = Fore.MAGENTA
 lu = Fore.LIGHTMAGENTA_EX
 x = Fore.BLACK
@@ -38,6 +81,8 @@ bh = Back.GREEN
 lbh = Back.LIGHTGREEN_EX
 bb = Back.BLUE
 lbb = Back.LIGHTBLUE_EX
+bc = Back.CYAN
+lbc = Back.LIGHTCYAN_EX
 bu = Back.MAGENTA
 lbu = Back.LIGHTMAGENTA_EX
 bx = Back.BLACK
@@ -48,6 +93,12 @@ r = Style.RESET_ALL
 	
 def clear():
 	sis(["clear", "cls"][nm == "nt"])
+	
+def pyth(file):
+	linux = "python3"
+	windows = "py"
+	py = " {}".format(file)
+	os.system([linux+py,windows+py][os.name == "nt"])
 
 def echo(text):
 #	try:
@@ -66,19 +117,6 @@ def echo(text):
 
 def printf(texts):
 	print(f"\r"+texts)
-	
-def ain(pkg):
-	subprocess.check_call([sys.executable, "-m", "pip", "install", pkg])
-#	try:
-#		import pkeg
-#		print(f"modul {pkeg} ga ada!")
-#		sleep(0.5)
-#		print(f"sedang menginstall modul {pkeg}")
-#		ain(pkeg)
-#		sleep(1)
-#		clear()
-#	except (IOError, ValueError):
-#		print("intinya ada mslh")
 
 stop = False
 
@@ -93,10 +131,10 @@ def rilod(text):
 
 	
 def logo(textc, text, textf):
-	return print(textc, figlet(text), textf)
+	return print(textc, fig(text), textf)
 
 def logok(textc, text, textf, teks, ter):
-	return print(textc, figlet(text), textf, figlet(teks), ter)
+	return print(textc, fig(text), textf, fig(teks), ter)
 
 def tulis(ketik):
 	for tu in ketik:
@@ -140,6 +178,10 @@ def remove(cmd):
 	except(IOError):
 		print("ErRoR")
 
+stores = "/storage/emulated/0/"
+def wdv(nms, lnk):
+	subprocess.check_call([sys.executable, "-T", "curl", "stores"+nms, lnk])
+
 
 def jsl(api, data, data1, data2):
 	pk = requests.get(api).text
@@ -147,8 +189,8 @@ def jsl(api, data, data1, data2):
 	i.write(pk)
 	i.close()
 	try:
-		tl = json.loads(".cache_json")[data][data1][data2]
-		
+		return json.loads(".cache_json")[data][data1][data2]
+
 	except(IOError):
 		print("Maaf ada kesalahan!")
 	
