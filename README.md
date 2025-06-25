@@ -1,10 +1,11 @@
 Mau tau caranya?
 ya silahkan download dulu hehe
-git clone https://github.com/RidhoSenpai/gabut.git
 
-cd gabut
+> git clone https://github.com/RidhoSenpai/gabut.git
 
-python risen.py
+> cd gabut
 
-Fungsinya? ga ada jir ya emang segabut itulah
+> python risen.py
+
+Fungsinya? ga ada jir ya emang segabut itulah proyek inj 
 banyak fitur ga berfungsi karna backupan ilang hiks hiks
