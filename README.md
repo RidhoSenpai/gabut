@@ -7,5 +7,6 @@ ya silahkan download dulu hehe
 
 > python risen.py
 
-Fungsinya? ga ada jir ya emang segabut itulah proyek inj 
+Fungsinya? ga ada jir ya emang segabut itulah proyek inj
+
 banyak fitur ga berfungsi karna backupan ilang hiks hiks
